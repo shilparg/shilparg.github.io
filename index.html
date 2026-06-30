@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shilpa Kamlesh Kangya — AI & Data Science Portfolio</title>
+  <style>
+    :root {
+      --navy:   #102A4A;
+      --blue:   #1F5C99;
+      --accent: #2E86C1;
+      --light:  #EBF4FB;
+      --text:   #1A1A1A;
+      --muted:  #5A6475;
+      --border: #D5E3F0;
+      --white:  #FFFFFF;
+      --tag-bg: #D6EAF8;
+      --kaggle: #20BEFF;
+      --green:  #1ABC9C;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #F4F7FA;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, #1A4A7A 100%);
+      color: var(--white);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    header .tagline {
+      font-size: 1.05rem;
+      color: #A8C8E8;
+      margin-bottom: 20px;
+    }
+    .contact-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .contact-bar a {
+      color: #C8E0F4;
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .contact-bar a:hover { color: var(--white); }
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.82rem;
+      color: #D0E8F8;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    nav ul li a {
+      display: block;
+      padding: 14px 24px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    section { margin-bottom: 56px; }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--blue), transparent);
+      border-radius: 1px;
+    }
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(16,42,74,0.12);
+    }
+
+    .card-accent {
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+    }
+    .card-accent.kaggle {
+      background: linear-gradient(90deg, var(--kaggle), #0090C8);
+    }
+    .card-accent.green {
+      background: linear-gradient(90deg, var(--green), #17A589);
+    }
+
+    .card-body {
+      padding: 22px 22px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-category {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .card-category.kaggle { color: #0090C8; }
+    .card-category.green  { color: var(--green); }
+
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      flex: 1;
+      margin-bottom: 14px;
+    }
+
+    .outcome {
+      background: var(--light);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .outcome.kaggle { border-left-color: var(--kaggle); }
+    .outcome.green  { border-left-color: var(--green); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--blue);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .tag.kaggle { background: #D1F2FF; color: #0080B0; }
+
+    .card-links {
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--navy); }
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+    }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-kaggle {
+      background: var(--kaggle);
+      color: var(--white);
+    }
+    .btn-kaggle:hover { background: #009ACC; }
+    .coming-soon {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      align-self: center;
+    }
+
+    /* ── SKILLS STRIP ── */
+    .skills-strip {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .skill-group h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+    .skill-group p {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #A8C8E8;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.84rem;
+    }
+    footer a { color: #C8E0F4; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      .cards { grid-template-columns: 1fr; }
+      nav ul li a { padding: 12px 14px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header>
+  <h1>Shilpa Kamlesh Kangya</h1>
+  <p class="tagline">AI Deployment Leader &nbsp;·&nbsp; Data Engineer &nbsp;·&nbsp; Cloud Architect</p>
+  <div class="badge-row">
+    <span class="badge">Singapore Citizen</span>
+    <span class="badge">24+ Years Global Experience</span>
+    <span class="badge">NTU Advanced Certificate — Data Science & AI</span>
+    <span class="badge">NTU Advanced Certificate — Cloud Infrastructure</span>
+  </div>
+  <div class="contact-bar">
+    <a href="mailto:shilpakangya2025@gmail.com">✉ shilpakangya2025@gmail.com</a>
+    <a href="https://www.linkedin.com/in/shilpa-kangya" target="_blank">🔗 LinkedIn</a>
+    <a href="https://github.com/shilparg" target="_blank">⌥ GitHub</a>
+    <a href="https://www.kaggle.com/" target="_blank">📊 Kaggle</a>
+  </div>
+</header>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <ul>
+    <li><a href="#capstone" class="active">NTU Capstone Projects</a></li>
+    <li><a href="#kaggle">Kaggle Competitions</a></li>
+    <li><a href="#skills">Technical Skills</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ═══════════════ NTU CAPSTONE PROJECTS ═══════════════ -->
+  <section id="capstone">
+    <h2 class="section-title">NTU Capstone Projects</h2>
+    <p class="section-subtitle">
+      Production-grade AI and cloud infrastructure projects built during the Advanced Professional Certificates
+      in Data Science &amp; AI and Cloud Infrastructure Engineering at Nanyang Technological University, Singapore.
+    </p>
+
+    <div class="cards">
+
+      <!-- Project 1: MAS Compliance Engine -->
+      <div class="card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-category">Data Science &amp; AI · Regulatory Tech</div>
+          <h3 class="card-title">Apex Digital Capital Markets Compliance Sandbox Engine</h3>
+          <p class="card-desc">
+            Serverless multi-agent RAG engine that automatically audits cloud infrastructure
+            configurations (Terraform HCL/JSON) against MAS TRM Guidelines and Cyber Hygiene Notices.
+            Dual-LLM pipeline combining Gemini 2.5 Flash and AWS Bedrock Claude 3.5 Sonnet with
+            strict Pydantic data contracts to eliminate hallucinations.
+          </p>
+          <div class="outcome">
+            ✦ 100% deterministic regulatory mapping &nbsp;·&nbsp; Hosted at &lt;$15/month on AWS ECS Fargate
+          </div>
+          <div class="tags">
+            <span class="tag">Multi-Agent RAG</span>
+            <span class="tag">Gemini 2.5 Flash</span>
+            <span class="tag">AWS Bedrock</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Pydantic</span>
+            <span class="tag">Docker</span>
+            <span class="tag">ECS Fargate</span>
+            <span class="tag">MAS TRM</span>
+          </div>
+          <div class="card-links">
+            <a class="btn btn-primary" href="https://github.com/shilparg/mas-trm-governance-engine" target="_blank">⌥ View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: SEC Anomaly Detector -->
+      <div class="card">
+        <div class="card-accent green"></div>
+        <div class="card-body">
+          <div class="card-category green">Data Science &amp; AI · FinTech</div>
+          <h3 class="card-title">Forensic AI SEC Anomaly Detector</h3>
+          <p class="card-desc">
+            End-to-end fraud detection pipeline ingesting unstructured SEC filings via a decoupled
+            Medallion architecture (Meltano → Dagster → MongoDB Atlas). FinBERT NLP sentiment analysis
+            combined with Isolation Forest anomaly detection isolates high-risk financial entities.
+            Results surfaced via a 7-page interactive Streamlit dashboard.
+          </p>
+          <div class="outcome green">
+            ✦ Full-stack AI delivery — raw SEC data to interactive insight dashboard
+          </div>
+          <div class="tags">
+            <span class="tag">FinBERT</span>
+            <span class="tag">Isolation Forest</span>
+            <span class="tag">Meltano</span>
+            <span class="tag">Dagster</span>
+            <span class="tag">MongoDB Atlas</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Medallion Architecture</span>
+          </div>
+          <div class="card-links">
+            <a class="btn btn-primary" href="https://github.com/shilparg/forensic-intelligence-platform" target="_blank">⌥ View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Smart Factory -->
+      <div class="card">
+        <div class="card-accent" style="background: linear-gradient(90deg, #8E44AD, #5B2C6F);"></div>
+        <div class="card-body">
+          <div class="card-category" style="color:#7D3C98;">Cloud Infrastructure · IoT</div>
+          <h3 class="card-title">Virtual Smart Factory Analytics Platform</h3>
+          <p class="card-desc">
+            High-throughput IoT telemetry pipeline on AWS IoT Core that ingests real-time equipment
+            sensor data and applies Scikit-learn predictive models to forecast failures before they
+            occur. Enterprise observability layer built with Prometheus and Grafana for live metrics
+            scraping, alerting, and factory infrastructure monitoring.
+          </p>
+          <div class="outcome" style="border-left-color:#8E44AD;">
+            ✦ Predictive failure detection &nbsp;·&nbsp; Real-time Prometheus/Grafana observability
+          </div>
+          <div class="tags">
+            <span class="tag">AWS IoT Core</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Prometheus</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Predictive ML</span>
+          </div>
+          <div class="card-links">
+            <a class="btn btn-primary" href="https://github.com/shilparg/capstone_cloud_iot" target="_blank">⌥ View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Singapore Jobs Analytics -->
+      <div class="card">
+        <div class="card-accent" style="background: linear-gradient(90deg, #E67E22, #CA6F1E);"></div>
+        <div class="card-body">
+          <div class="card-category" style="color:#CA6F1E;">Data Analytics · HR Tech</div>
+          <h3 class="card-title">Singapore Jobs Market Analytics Dashboard</h3>
+          <p class="card-desc">
+            Comprehensive data analytics dashboard built with Streamlit to analyse Singapore job market
+            trends and deliver actionable insights for talent acquisition teams. Processes and visualises
+            live job posting data to surface demand signals, salary benchmarks, and skills gaps across
+            the Singapore tech sector.
+          </p>
+          <div class="outcome" style="border-left-color:#E67E22;">
+            ✦ End-to-end analytics product — data ingestion to interactive Streamlit dashboard
+          </div>
+          <div class="tags">
+            <span class="tag">Streamlit</span>
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Data Visualisation</span>
+            <span class="tag">HR Analytics</span>
+          </div>
+          <div class="card-links">
+            <a class="btn btn-primary" href="https://github.com/shilparg/capstone_singapore_jobs-analytics" target="_blank">⌥ View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ KAGGLE COMPETITIONS ═══════════════ -->
+  <section id="kaggle">
+    <h2 class="section-title">Kaggle Competitions</h2>
+    <p class="section-subtitle">
+      Competitive machine learning projects tackling real-world industry datasets.
+    </p>
+
+    <div class="cards">
+
+      <!-- ROGI Wellbore -->
+      <div class="card">
+        <div class="card-accent kaggle"></div>
+        <div class="card-body">
+          <div class="card-category kaggle">Kaggle Competition · Oil &amp; Gas / Geoscience</div>
+          <h3 class="card-title">ROGI Wellbore Prediction Challenge</h3>
+          <p class="card-desc">
+            Kaggle competition focused on wellbore data analysis and predictive modelling
+            for drilling and geoscience applications. Applied machine learning techniques
+            to subsurface sensor data to predict wellbore conditions and optimise
+            drilling performance outcomes.
+          </p>
+          <div class="outcome kaggle">
+            ✦ Competitive ML on real-world wellbore sensor datasets
+          </div>
+          <div class="tags">
+            <span class="tag kaggle">Kaggle</span>
+            <span class="tag kaggle">Geoscience ML</span>
+            <span class="tag kaggle">Python</span>
+            <span class="tag kaggle">Predictive Modelling</span>
+            <span class="tag kaggle">Tabular Data</span>
+          </div>
+          <div class="card-links">
+            <a class="btn btn-kaggle" href="https://www.kaggle.com/" target="_blank">📊 View on Kaggle</a>
+            <a class="btn btn-outline" href="#" target="_blank">⌥ Notebook</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder for more Kaggle projects -->
+      <div class="card" style="border: 2px dashed var(--border); background: #FAFCFF;">
+        <div class="card-body" style="justify-content: center; align-items: center; text-align: center; padding: 40px 22px;">
+          <div style="font-size: 2rem; margin-bottom: 12px; opacity: 0.3;">+</div>
+          <p style="color: var(--muted); font-size: 0.88rem;">More Kaggle competitions coming soon</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ TECHNICAL SKILLS ═══════════════ -->
+  <section id="skills">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-strip">
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>AI &amp; GenAI Systems</h4>
+          <p>Multi-Agent RAG, LLM Pipelines, Prompt Engineering, Gemini 2.5 Flash, Claude 3.5 Sonnet, LangChain, Pydantic, FinBERT, Scikit-learn</p>
+        </div>
+        <div class="skill-group">
+          <h4>Cloud &amp; Production Deployment</h4>
+          <p>AWS (ECS Fargate, IoT Core, S3, IAM, GuardDuty, CloudTrail), GCP, Terraform HCL, Docker, Kubernetes, Prometheus, Grafana</p>
+        </div>
+        <div class="skill-group">
+          <h4>Data Engineering</h4>
+          <p>Meltano, Dagster, dbt, BigQuery, MongoDB Atlas, ChromaDB, Vector Search, Medallion Architecture, Advanced SQL</p>
+        </div>
+        <div class="skill-group">
+          <h4>APIs &amp; Developer Tools</h4>
+          <p>REST APIs, CI/CD Pipelines (Jenkins, Robot Framework), Streamlit, Jira, Confluence, SAFe Agile</p>
+        </div>
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <p>Python (Pandas, BeautifulSoup, Seaborn), C, C++, Shell/Groovy, SQL</p>
+        </div>
+        <div class="skill-group">
+          <h4>Governance &amp; Compliance</h4>
+          <p>MAS TRM Guidelines, NIST Cybersecurity Framework, ISO 26262, ASPICE, Regulatory AI Mapping</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <p>
+    Shilpa Kamlesh Kangya &nbsp;·&nbsp; Singapore &nbsp;·&nbsp;
+    <a href="mailto:shilpakangya2025@gmail.com">shilpakangya2025@gmail.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/" target="_blank">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/shilparg" target="_blank">GitHub</a>
+  </p>
+  <p style="margin-top:8px; font-size:0.78rem; opacity:0.6;">
+    Built for human readers and ATS systems alike &nbsp;·&nbsp; Updated June 2026
+  </p>
+</footer>
+
+<script>
+  // Smooth scroll + active nav highlight
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // Highlight nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+
+</body>
+</html>
